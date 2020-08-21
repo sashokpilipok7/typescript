@@ -1,27 +1,27 @@
 import React from 'react';
-import './App.css';
+import TodoList from './components/todo-list'
 
-function App() {
-  let body: string | Element = "fqf"
-  let boolean: boolean = false
+import styled from 'styled-components'
+import { Row, Col, Typography } from 'antd'
+import { data1, data2 } from './data'
 
-  
+const Container = styled.div`
+  max-width: 80%;
+  margin: 20px auto;
+`
+
+const Title = styled.h2`
+  font-size: 30px;
+`
+
+const App: React.FC = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+    <Container>
+        <Title>Script-Studio - Zadanie rekrutacyjne</Title>
+        <TodoList listAirport={data1} listItinerary={data2} />
+    </Container>
+  </>
   );
 }
 
