@@ -1,5 +1,5 @@
 import React from 'react';
-import TodoList from './components/todo-list'
+import TodoList from './containers/TodoList'
 
 import styled from 'styled-components'
 import { Row, Col, Typography } from 'antd'
