@@ -24,6 +24,7 @@ const TodoList: React.FC<TodoListProps> = ({listAirport, listItinerary}) => {
     
     const routeChange = () => {
         let withMy: I2 = []
+        let withMy2: I2 = []
         withMy = listItinerary.filter(item => item.find(i => i === myLoc ) && item.find(i => i === destination ))
 
         if(!withMy[0] && myLoc && destination){
@@ -31,19 +32,45 @@ const TodoList: React.FC<TodoListProps> = ({listAirport, listItinerary}) => {
                 if(item.find(i => i === myLoc )){
                     withMy.push(item)
                 }else if(item.find(i => i === destination )){
-                    withMy.push(item)
+                    withMy2.push(item)
                 }
            })
-           withMy.filter(item => item.find(i => {
+           withMy.filter((item, idx) => item.find(i => {
                 if(i !== myLoc && i !== destination){
-                    
+                    const newPoint: string = i
+                    const next = item[idx+1]
+                    // if(next && next.find((i: any) => i === newPoint)){
+                    // тада всі сполучення городів i === destination && i === myLoc
+                    // }
                 }
            }))
         }
-       
-       setRoute(withMy)
-    }
-    console.log(route)
+        findJoin(withMy, withMy2)
+       setRoute([...withMy, ...withMy2])
+    }       
+
+    const findJoin = (a: I2, b: I2) => {
+        let newCountry: Array<string> = []
+        let joinEl: I2 | Array<string> = []
+        a.filter(item => item.find(i => {
+            if(i !== myLoc && i !== destination){
+                newCountry.push(i)
+                joinEl = b.filter(item2 => item2.find(i2 => {
+                    i2 !== myLoc && i2 !== destination && newCountry.push(i2)
+                    if(i === i2){
+                        return true
+                    }
+               }))
+            }
+        })) 
+        if(joinEl[0]){
+            alert('MArshrut done')
+        }else{
+         console.log(newCountry)
+        } 
+        console.log(joinEl)
+    } 
+
     return(
         <div className="d-flex flex-wrap justify-content-between">
             <div className="d-flex">
