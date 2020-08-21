@@ -10,7 +10,7 @@ const Li = styled.div`
 `
 
 interface DropdownProps{
-    list: Array<string>,
+    list: I1,
     onChange: Function,
     checked: string
 }
