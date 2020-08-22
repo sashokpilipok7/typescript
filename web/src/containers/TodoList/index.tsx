@@ -54,22 +54,43 @@ const TodoList: React.FC<TodoListProps> = ({listAirport, listItinerary}) => {
         let joinEl: I2 | Array<string> = []
         a.filter(item => item.find(i => {
             if(i !== myLoc && i !== destination){
-                newCountry.push(i)
+                newCountry.indexOf(i) < 0 &&  newCountry.push(i)
                 joinEl = b.filter(item2 => item2.find(i2 => {
-                    i2 !== myLoc && i2 !== destination && newCountry.push(i2)
                     if(i === i2){
                         return true
+                    }
+                    if(i2 !== myLoc && i2 !== destination){
+                        newCountry.indexOf(i2) < 0 &&  newCountry.push(i2)
                     }
                }))
             }
         })) 
         if(joinEl[0]){
-            alert('MArshrut done')
+            alert('MArshrut done with 3 race')
         }else{
          console.log(newCountry)
+         findNewRoute(newCountry)
         } 
-        console.log(joinEl)
     } 
+
+    const findNewRoute = (arr: Array<string>) => {
+        let newRoutes: I2 = []
+        listItinerary.filter(item => {
+           if(item.indexOf(myLoc) < 0 && item.indexOf(destination) < 0 ){
+               item.find(i => {
+                      if(arr.find(new1 =>  new1 === i)){
+                         newRoutes.push(item)
+                      }
+               })  
+           }
+        })
+        let itemSuccess = newRoutes.find(item => arr.indexOf(item[0]) >=0 && arr.indexOf(item[1])  >=0  )
+        console.log(newRoutes)
+        if(itemSuccess){
+            debugger
+            alert('MArshrut done with 4 race')
+        } 
+    }
 
     return(
         <div className="d-flex flex-wrap justify-content-between">
