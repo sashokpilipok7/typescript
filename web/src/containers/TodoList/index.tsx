@@ -68,7 +68,7 @@ const TodoList: React.FC<TodoListProps> = ({listAirport, listItinerary}) => {
         if(joinEl[0]){
             alert('MArshrut done with 3 race')
         }else{
-         console.log(newCountry)
+         console.log(newCountry, 'New country')
          findNewRoute(newCountry)
         } 
     } 
@@ -85,7 +85,7 @@ const TodoList: React.FC<TodoListProps> = ({listAirport, listItinerary}) => {
            }
         })
         let itemSuccess = newRoutes.find(item => arr.indexOf(item[0]) >=0 && arr.indexOf(item[1])  >=0  )
-        console.log(newRoutes)
+        console.log(newRoutes, 'New Routes')
         if(itemSuccess){
             debugger
             alert('MArshrut done with 4 race')
